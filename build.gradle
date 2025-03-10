@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'io.freefair.lombok' version '8.6'
+    id 'com.github.johnrengelman.shadow' version '7.1.0'
+}
+
+group = 'dev.eths'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+
+    maven { url 'https://jitpack.io' }
+    maven { url "https://repo.codemc.io/repository/maven-snapshots/" }
+    maven { url "https://repo.codemc.io/repository/maven-releases/" }
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
+    maven { url "https://repo.aikar.co/content/groups/aikar/" }
+}
+
+dependencies {
+    compileOnly "org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT"
+    implementation "co.aikar:acf-paper:0.5.1-SNAPSHOT"
+    implementation "com.github.retrooper:packetevents-spigot:2.5.0-SNAPSHOT"
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+}
+
+
+shadowJar {
+    archiveClassifier.set('all')
+    mergeServiceFiles()
+}
+
+tasks.build {
+    dependsOn shadowJar
+}
