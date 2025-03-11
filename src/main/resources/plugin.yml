@@ -1,3 +1,5 @@
 name: eLogin
 author: Eths
 main: dev.eths.elogin.LoginPlugin
+description: Free open-source, bukkit-based semi-premium plugin using packetevents
+version: 1.0
